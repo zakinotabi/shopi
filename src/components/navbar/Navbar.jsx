@@ -1,25 +1,26 @@
 import { Outlet, Link } from 'react-router-dom';
+import styles from './Navbar.module.css';
 
 export default function Navbar() {
   return (
     <div>
-      <nav>
+      <nav className={styles.navbar}>
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/shop">shop</Link>
+            <Link to="/shop">Shop</Link>
           </li>
-          <li>
-            <Link to="/cart">cart</Link>
+          <li className={styles.cart}>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </nav>
-      <hr />
-      <div>
+
+      <main className={styles['main-content']}>
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }
