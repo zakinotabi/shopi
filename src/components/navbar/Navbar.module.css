@@ -34,16 +34,17 @@
   list-style: none;
   margin: 0;
   height: 35px;
-  padding: 0 30px 5px;
+  padding: 0 30px 18px;
   width: 30%;
   min-width: 220px;
 }
 
 .navbar > ul::before {
   content: '';
-  filter: blur(60px);
+  /* filter: blur(60px); */
+  opacity: 0.95;
   background-color: black;
-  height: 100%;
+  height: 90%;
   left: 0;
   position: absolute;
   top: 0;
@@ -62,11 +63,11 @@
   text-decoration: none;
   position: relative;
   display: flex;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 17px;
   gap: 0.5rem;
   align-items: center;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
 }
 
 .navbar a::after {
@@ -74,9 +75,9 @@
   content: '';
   width: 0;
   left: 0;
-  bottom: -5px;
+  bottom: -2px;
   background: #ffffff;
-  height: 3px;
+  height: 2px;
   transition: 0.3s ease-out;
 }
 
@@ -84,6 +85,10 @@
   width: 100%;
 }
 
-.main-content {
-  /* padding-top: 50px; */
+.navbar a.active::after {
+  width: 100%;
+  background: #d2d2d2;
+}
+.navbar a.active {
+  color: #d2d2d2;
 }
