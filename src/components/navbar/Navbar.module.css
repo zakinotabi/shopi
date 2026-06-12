@@ -1,5 +1,5 @@
 .navbar {
-  position: fixed;
+  /* position: fixed;
   top: 0%;
   right: 0;
   left: 0;
@@ -8,16 +8,29 @@
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   /* transform: translateY(-50%); */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Keeps it on top of images/content */
+  /* background: none; */
 }
 
 .navbar > ul {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(101, 101, 101, 0.188);
-  border-radius: 100px;
+  /* background-color: rgba(101, 101, 101, 0.188); */
+  /* border-radius: 100px; */
+
   list-style: none;
   margin: 0;
   height: 35px;
@@ -26,9 +39,23 @@
   min-width: 220px;
 }
 
+.navbar > ul::before {
+  content: '';
+  filter: blur(60px);
+  background-color: black;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 .navbar a {
   list-style: none;
-  color: rgb(0, 0, 0);
+
+  color: #ffffff;
+  /* mix-blend-mode: difference; */
   margin: 0 8px;
   cursor: pointer;
   white-space: nowrap;
@@ -39,6 +66,7 @@
   font-size: 20px;
   gap: 0.5rem;
   align-items: center;
+  letter-spacing: 2px;
 }
 
 .navbar a::after {
@@ -47,7 +75,7 @@
   width: 0;
   left: 0;
   bottom: -5px;
-  background: #000000;
+  background: #ffffff;
   height: 3px;
   transition: 0.3s ease-out;
 }
@@ -57,5 +85,5 @@
 }
 
 .main-content {
-  padding-top: 50px;
+  /* padding-top: 50px; */
 }
