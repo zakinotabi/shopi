@@ -75,18 +75,45 @@
   color: #1a202c;
 }
 
-.item-btn {
+.item-btns-wrapper button {
   background-color: #000000;
   color: white;
   border: none;
-  padding: 7px 11px;
+  /* padding: 7px 11px; */
   font-size: 0.8rem;
 
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.5s ease;
+
+  width: 90px; /* Adjust this to fit your default button text */
+  height: 32px;
+  transition:
+    background-color 0.5s ease,
+    padding 0.5s ease,
+    width 0.5s ease,
+    height 0.5s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  transform-origin: left;
 }
 
-.item-btn:hover {
+.item-btns-wrapper button:hover {
   background-color: #5d341a;
+}
+
+.item-btns-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-btns-wrapper button.item-btn-plus {
+  padding: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.item-counter {
+  margin: 0 7px;
+  font-size: 0.8rem;
 }

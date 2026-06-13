@@ -1,7 +1,11 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css';
+import { useState } from 'react';
 
 export default function Navbar() {
+  const [cart, setCart] = useState({});
+  const [counter, setCounter] = useState(0);
+
   const activeLink = ({ isActive }) => {
     return isActive ? `${styles.link} ${styles.active}` : styles.link;
   };
@@ -23,13 +27,14 @@ export default function Navbar() {
           <li className={styles.cart}>
             <NavLink to="/cart" className={activeLink}>
               Cart
+              {counter > 0 && <div className={styles['cart-number']}>{counter}</div>}
             </NavLink>
           </li>
         </ul>
       </nav>
 
       <main className={styles['main-content']}>
-        <Outlet />
+        <Outlet context={{ cart, setCart, setCounter }} />
       </main>
     </div>
   );
