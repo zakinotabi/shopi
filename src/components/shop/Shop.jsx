@@ -27,23 +27,23 @@ export default function Shop() {
     <div className={styles.container}>
       <div className={styles.grid}>
         {items.map((item, i) => (
-          <div key={i} className={styles['item-container']}>
-            <div className={styles['item-img']}>
+          <div key={i} className={styles.itemContainer}>
+            <div className={styles.itemImg}>
               <img src={item.image} alt={item.title} />
             </div>
-            <div className={styles['item-title']}>{item.title.split(' ').slice(0, 5).join(' ')}</div>
-            <div className={styles['item-footer']}>
-              <div className={styles['item-price']}>{item.price} $</div>
+            <div className={styles.itemTitle}>{item.title.split(' ').slice(0, 5).join(' ')}</div>
+            <div className={styles.itemFooter}>
+              <div className={styles.itemPrice}>{item.price} $</div>
 
-              <div className={styles['item-btns-wrapper']}>
+              <div className={styles.itemBtnsWrapper}>
                 {cart[item.id] && (
-                  <button onClick={() => handleRemoveCart(item)} className={styles['item-btn-plus']}>
+                  <button onClick={() => handleRemoveCart(item)} className={styles.itemBtnPlus}>
                     -1
                   </button>
                 )}
-                <div className={styles['item-counter']}>{cart[item.id]}</div>
+                <div className={styles.itemCounter}>{cart[item.id]}</div>
 
-                <button onClick={() => handleAddToCart(item)} className={cart[item.id] && styles['item-btn-plus']}>
+                <button onClick={() => handleAddToCart(item)} className={cart[item.id] && styles.itemBtnPlus}>
                   {cart[item.id] ? '+1' : 'Add to Cart'}
                 </button>
               </div>

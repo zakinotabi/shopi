@@ -18,7 +18,7 @@
   width: 80%;
 }
 
-.item-container {
+.itemContainer {
   display: flex;
   flex-direction: column;
 
@@ -31,11 +31,11 @@
   transition: box-shadow 0.2s ease;
 }
 
-.item-container:hover {
+.itemContainer:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.item-img {
+.itemImg {
   width: 100%;
   height: 150px;
   margin-bottom: 12px;
@@ -47,13 +47,13 @@
   /* background-color: #fffdfa; */
 }
 
-.item-img img {
+.itemImg img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.item-title {
+.itemTitle {
   text-align: left;
   font-size: 0.75rem;
   font-weight: 600;
@@ -62,20 +62,20 @@
   line-height: 1.4;
 }
 
-.item-footer {
+.itemFooter {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
 }
 
-.item-price {
+.itemPrice {
   font-size: 0.8rem;
   font-weight: 700;
   color: #1a202c;
 }
 
-.item-btns-wrapper button {
+.itemBtnsWrapper button {
   background-color: #000000;
   color: white;
   border: none;
@@ -97,23 +97,23 @@
   transform-origin: left;
 }
 
-.item-btns-wrapper button:hover {
+.itemBtnsWrapper button:hover {
   background-color: #5d341a;
 }
 
-.item-btns-wrapper {
+.itemBtnsWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.item-btns-wrapper button.item-btn-plus {
+.itemBtnsWrapper button.itemBtnPlus {
   padding: 0;
   width: 28px;
   height: 28px;
 }
 
-.item-counter {
+.itemCounter {
   margin: 0 7px;
   font-size: 0.8rem;
 }

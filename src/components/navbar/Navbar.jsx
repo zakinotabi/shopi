@@ -27,13 +27,13 @@ export default function Navbar() {
           <li className={styles.cart}>
             <NavLink to="/cart" className={activeLink}>
               Cart
-              {counter > 0 && <div className={styles['cart-number']}>{counter}</div>}
+              {counter > 0 && <div className={styles.cartNumber}>{counter}</div>}
             </NavLink>
           </li>
         </ul>
       </nav>
 
-      <main className={styles['main-content']}>
+      <main className={styles.mainContent}>
         <Outlet context={{ cart, setCart, setCounter }} />
       </main>
     </div>
