@@ -49,7 +49,7 @@ export default function Cart() {
                 </div>
                 <div className={styles.itemPriceWrapper}>
                   <span className={styles.itemTotalPrice}>${items[key].price * cart[key]}</span>
-                  <span className={styles.itemPrice}>${items[key].price}</span>
+                  {cart[key] > 1 && <span className={styles.itemPrice}>${items[key].price}</span>}
                 </div>
               </div>
             ))}

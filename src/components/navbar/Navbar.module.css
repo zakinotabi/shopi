@@ -96,7 +96,8 @@
 .cartNumber {
   position: absolute;
   top: -8px;
-  right: -15px;
+  left: 35px;
+  /* right: -15px; */
   /* min-width: 18px; */
   height: 18px;
   padding: 0 5px;
