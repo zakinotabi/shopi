@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 5rem;
+  margin-bottom: 5rem;
   background-color: white;
 }
 
@@ -88,7 +89,6 @@
   width: 90px; /* Adjust this to fit your default button text */
   height: 32px;
   transition:
-    background-color 0.5s ease,
     padding 0.5s ease,
     width 0.5s ease,
     height 0.5s ease;
@@ -105,15 +105,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 90px;
 }
 
 .itemBtnsWrapper button.itemBtnPlus {
   padding: 0;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
 }
 
 .itemCounter {
-  margin: 0 7px;
-  font-size: 0.8rem;
+  width: 30px;
+  line-height: 32px;
+  background-color: #eaeaead9;
+  /* margin: 0 10px; */
+  font-size: 0.9rem;
+  /* border-bottom: 1px solid black; */
+  /* border-top: 1px solid black; */
 }

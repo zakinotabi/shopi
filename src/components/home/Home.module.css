@@ -58,7 +58,9 @@
   margin: 30px 0;
   line-height: 4rem;
 }
-
+.homeIntro a {
+  align-self: flex-end;
+}
 .homeButton {
   position: relative;
   display: inline-block;

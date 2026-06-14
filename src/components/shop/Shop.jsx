@@ -1,20 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './Shop.module.css';
 import { useOutletContext } from 'react-router-dom';
 
 export default function Shop() {
-  const [items, setItems] = useState([]);
-  const { cart, setCart, setCounter } = useOutletContext();
-
-  const handleAddToCart = (item) => {
-    setCart({ ...cart, [item.id]: (cart[item.id] ?? 0) + 1 });
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
-  const handleRemoveCart = (item) => {
-    setCart({ ...cart, [item.id]: (cart[item.id] ?? 0) - 1 });
-    setCounter((prevCounter) => prevCounter - 1);
-  };
+  const { items, cart, setItems, handleAddToCart, handleRemoveCart } = useOutletContext();
 
   //api
   useEffect(() => {
@@ -33,18 +22,20 @@ export default function Shop() {
             </div>
             <div className={styles.itemTitle}>{item.title.split(' ').slice(0, 5).join(' ')}</div>
             <div className={styles.itemFooter}>
-              <div className={styles.itemPrice}>{item.price} $</div>
+              <div className={styles.itemPrice}>${item.price}</div>
 
               <div className={styles.itemBtnsWrapper}>
-                {cart[item.id] && (
-                  <button onClick={() => handleRemoveCart(item)} className={styles.itemBtnPlus}>
-                    -1
-                  </button>
+                {cart[i] > 0 && (
+                  <>
+                    <button onClick={() => handleRemoveCart(i)} className={styles.itemBtnPlus}>
+                      -
+                    </button>
+                    <div className={styles.itemCounter}>{cart[i]}</div>
+                  </>
                 )}
-                <div className={styles.itemCounter}>{cart[item.id]}</div>
 
-                <button onClick={() => handleAddToCart(item)} className={cart[item.id] && styles.itemBtnPlus}>
-                  {cart[item.id] ? '+1' : 'Add to Cart'}
+                <button onClick={() => handleAddToCart(i)} className={cart[i] && styles.itemBtnPlus}>
+                  {cart[i] ? '+' : 'Add to Cart'}
                 </button>
               </div>
             </div>
