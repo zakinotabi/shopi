@@ -10,17 +10,17 @@ export default function Navbar({ counter }) {
     <nav className={styles.navbar}>
       <ul>
         <li>
-          <NavLink to="/" className={activeLink}>
+          <NavLink data-testid="home" to="/" className={activeLink}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/shop" className={activeLink}>
+          <NavLink data-testid="shop" to="/shop" className={activeLink}>
             Shop
           </NavLink>
         </li>
         <li className={styles.cart}>
-          <NavLink to="/cart" className={activeLink}>
+          <NavLink data-testid="cart" to="/cart" className={activeLink}>
             Cart
             {counter > 0 && <div className={styles.cartNumber}>{counter}</div>}
           </NavLink>

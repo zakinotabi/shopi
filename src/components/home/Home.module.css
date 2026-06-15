@@ -44,10 +44,10 @@
 }
 
 .homeLogo {
-  color: var(--primary-brown);
-  width: fit-content;
-  font-size: 2.3rem;
-  font-weight: 800;
+  color: var(--primary-brown) !important;
+  width: fit-content !important;
+  font-size: 2.7rem !important;
+  font-weight: 800 !important;
 }
 
 .homeContent {

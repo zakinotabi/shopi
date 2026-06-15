@@ -17,7 +17,7 @@ export default function Cart() {
   const total = +subTotal + +shipping + +tax;
 
   return (
-    <div className={styles.wrapper}>
+    <div data-testid="cart-page" className={styles.wrapper}>
       <div className={styles.container}>
         {/* Cart Items  */}
         <section className={styles.cartSection}>

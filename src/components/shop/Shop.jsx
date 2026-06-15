@@ -12,15 +12,23 @@ export default function Shop() {
       .then((data) => setItems(data));
   }, []);
 
+  // 1. handles empty arrays safely
+  if (!items || items.length === 0) {
+    return (
+      <div data-testid="loading-shop" className={styles.loading}>
+        LOADING ...
+      </div>
+    );
+  }
   return (
-    <div className={styles.container}>
+    <div data-testid="shopping-items" className={styles.container}>
       <div className={styles.grid}>
         {items.map((item, i) => (
           <div key={i} className={styles.itemContainer}>
             <div className={styles.itemImg}>
               <img src={item.image} alt={item.title} />
             </div>
-            <div className={styles.itemTitle}>{item.title.split(' ').slice(0, 5).join(' ')}</div>
+            <div className={styles.itemTitle}>{item.title}</div>
             <div className={styles.itemFooter}>
               <div className={styles.itemPrice}>${item.price}</div>
 
@@ -34,7 +42,7 @@ export default function Shop() {
                   </>
                 )}
 
-                <button onClick={() => handleAddToCart(i)} className={cart[i] && styles.itemBtnPlus}>
+                <button onClick={() => handleAddToCart(i)} className={cart[i] ? styles.itemBtnPlus : ''}>
                   {cart[i] ? '+' : 'Add to Cart'}
                 </button>
               </div>
