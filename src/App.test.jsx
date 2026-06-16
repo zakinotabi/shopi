@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import { routes } from './Routes';
+import { routes } from './routes';
 
 describe('browsing App / Navbar behavior', () => {
   const renderApp = (path = '/') => {
@@ -61,30 +61,46 @@ describe('navbar counter behavior', () => {
       'fetch',
       vi.fn(() =>
         Promise.resolve({
-          json: () => Promise.resolve([{ id: 1, title: 'Product A', price: 9.99, image: 'a.jpg', rating: { rate: 4.5 } }]),
+          json: () =>
+            Promise.resolve([
+              { id: 1, title: 'Product A', price: 9.99, image: 'a.jpg', rating: { rate: 4.5 } },
+              { id: 2, title: 'Product B', price: 1.99, image: 'b.jpg', rating: { rate: 4.0 } },
+            ]),
         }),
       ),
     );
     const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
     render(<RouterProvider router={router} />);
     await screen.findByText('Product A'); // wait for products to load
+    await screen.findByText('Product B');
   };
+  // we need to mock the API behavior ro test the shop buttons
+  // that requires creating a router and waiting for the API to load every time
 
   it('increments counter when add to cart clicked', async () => {
     await renderShop();
     expect(await screen.findByText('Product A')).toBeInTheDocument();
-    const addBtn = screen.getByRole('button', { name: /add to cart/i });
-    fireEvent.click(addBtn);
+    const addBtn_1 = screen.getAllByRole('button', { name: /add to cart/i })[0];
+    const addBtn_2 = screen.getAllByRole('button', { name: /add to cart/i })[1];
+    // we have to get the buttons first thing
 
+    fireEvent.click(addBtn_1);
+    // checking if the navbar counter changes correctly and also the product counter
     const minBtn = screen.getByRole('button', { name: /decrement/i });
     expect(screen.getByTestId('nav-cart-count')).toHaveTextContent('1');
     expect(screen.getByTestId('product-counter')).toHaveTextContent('1');
-    fireEvent.click(addBtn);
+    fireEvent.click(addBtn_1);
     expect(screen.getByTestId('nav-cart-count')).toHaveTextContent('2');
     expect(screen.getByTestId('product-counter')).toHaveTextContent('2');
 
     // decrements counter when minus clicked
     fireEvent.click(minBtn);
     expect(screen.getByTestId('nav-cart-count')).toHaveTextContent('1');
+
+    // checking if the navbar counter changes correctly and also the product counter
+    // when clicking the second product buttons B
+    fireEvent.click(addBtn_2);
+    expect(screen.getByTestId('nav-cart-count')).toHaveTextContent('2');
+    expect(screen.getAllByTestId('product-counter')[1]).toHaveTextContent('1');
   });
 });

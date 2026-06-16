@@ -25,31 +25,41 @@ export default function Cart() {
 
           <div className={styles.itemList}>
             {Object.keys(cart).map((key) => (
-              <div className={styles.cartItem}>
-                <img className={styles.itemImage} src={items[key].image} alt={items[key].title} />
+              <div data-testid="product" className={styles.cartItem}>
+                <img aria-label="product-image" className={styles.itemImage} src={items[key].image} alt={items[key].title} />
 
                 <div className={styles.itemDetails}>
-                  <div className={styles.itemName}>{items[key].title}</div>
+                  <div aria-label="product-title" className={styles.itemName}>
+                    {items[key].title}
+                  </div>
                   <span className={styles.itemVariant}>{items[key].category}</span>
 
                   <div className={styles.itemActions}>
                     <div className={styles.qtyControl}>
-                      <button onClick={() => handleRemoveCart(key)} className={styles.qtyBtn}>
+                      <button aria-label="decrement" onClick={() => handleRemoveCart(key)} className={styles.qtyBtn}>
                         −
                       </button>
-                      <span className={styles.qtyValue}>{cart[key]}</span>
-                      <button onClick={() => handleAddToCart(key)} className={styles.qtyBtn}>
+                      <span aria-label="how-many-products" className={styles.qtyValue}>
+                        {cart[key]}
+                      </span>
+                      <button aria-label="increment" onClick={() => handleAddToCart(key)} className={styles.qtyBtn}>
                         +
                       </button>
                     </div>
-                    <button onClick={() => handleRemoveItemCart(key)} className={styles.removeBtn}>
+                    <button aria-label="remove-item" onClick={() => handleRemoveItemCart(key)} className={styles.removeBtn}>
                       Remove
                     </button>
                   </div>
                 </div>
                 <div className={styles.itemPriceWrapper}>
-                  <span className={styles.itemTotalPrice}>${items[key].price * cart[key]}</span>
-                  {cart[key] > 1 && <span className={styles.itemPrice}>${items[key].price}</span>}
+                  <span aria-label="product-price" className={styles.itemTotalPrice}>
+                    ${(items[key].price * cart[key]).toFixed(2)}
+                  </span>
+                  {cart[key] > 1 && (
+                    <span aria-label="single-product-price" className={styles.itemPrice}>
+                      ${items[key].price}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
@@ -69,25 +79,27 @@ export default function Cart() {
             <div className={styles.line}>
               <span>Subtotal</span>
               <span>
-                <span>${subTotal.toFixed(2)}</span>
+                <span aria-label="subtotal-cost">${subTotal.toFixed(2)}</span>
               </span>
             </div>
             <div className={styles.line}>
               <span>Shipping</span>
-              <span>${shipping.toFixed(2)}</span>
+              <span aria-label="shipping-cost">${shipping.toFixed(2)}</span>
             </div>
             <div className={styles.line}>
               <span>Tax (8%)</span>
-              <span>${tax.toFixed(2)}</span>
+              <span aria-label="tax-cost">${tax.toFixed(2)}</span>
             </div>
             <div className={styles.divider} />
             <div className={styles.lineTotal}>
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span aria-label="final-total">${total.toFixed(2)}</span>
             </div>
           </div>
 
-          <button className={styles.checkoutBtn}>Proceed to Checkout</button>
+          <button aria-label="checkout" className={styles.checkoutBtn}>
+            Proceed to Checkout
+          </button>
         </aside>
       </div>
     </div>
