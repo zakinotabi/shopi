@@ -1,12 +1,8 @@
 import '@testing-library/jest-dom/vitest';
 import { describe, it, expect } from 'vitest'; // Navbar.test.jsx
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
-import App from '../../App';
-import Home from '../home/Home';
-import Shop from '../shop/Shop';
-import Cart from '../cart/Cart';
 
 describe('Navbar', () => {
   const renderNavbar = () => {
@@ -35,67 +31,47 @@ describe('Navbar', () => {
     const cartLink = screen.getByTestId('cart');
     expect(cartLink).toBeInTheDocument();
   });
-});
-describe('Navbar link behavior', () => {
-  const renderApp = () => {
-    // 1. Define the routes using an array of objects
-    const routes = [
-      {
-        path: '/',
-        element: <App />,
-        children: [
-          {
-            index: true,
-            element: <Home />,
-          },
-          {
-            path: 'shop',
-            element: <Shop />,
-          },
-          {
-            path: 'cart',
-            element: <Cart />,
-          },
-        ],
-      },
-    ];
 
-    // 2. Create the memory router with your configuration
-    const router = createMemoryRouter(routes, {
-      initialEntries: ['/'],
-    });
-
-    // 3. Render using RouterProvider
-    render(<RouterProvider router={router} />);
-  };
-
-  it('test if home page loads at home page', async () => {
-    renderApp();
-
-    const logo = await screen.findByTestId('logo');
-
-    expect(logo).toBeInTheDocument();
-  });
-
-  it('test if home page loads on click', () => {
-    renderApp();
+  it('test if link is active when clicked', () => {
+    renderNavbar();
     const homeLink = screen.getByTestId('home');
     fireEvent.click(homeLink);
-    const logo = screen.getByTestId('logo');
-    expect(logo).toBeInTheDocument();
+    expect(homeLink).toHaveClass(/_active_/);
   });
-  it('test if shop page loads on click', () => {
-    renderApp();
+  it('test if link is active when clicked', () => {
+    renderNavbar();
     const shopLink = screen.getByTestId('shop');
     fireEvent.click(shopLink);
-    const loading = screen.getByTestId('loading-shop');
-    expect(loading).toBeInTheDocument();
+    expect(shopLink).toHaveClass(/_active_/);
   });
-  it('test if shop page loads on click', () => {
-    renderApp();
+  it('test if link is active when clicked', () => {
+    renderNavbar();
     const cartLink = screen.getByTestId('cart');
     fireEvent.click(cartLink);
-    const cart = screen.getByTestId('cart-page');
-    expect(cart).toBeInTheDocument();
+    expect(cartLink).toHaveClass(/_active_/);
+  });
+});
+
+describe('test cart counter in navbar', () => {
+  const renderNavbar = (counter = 0) => {
+    render(
+      <MemoryRouter>
+        <Navbar counter={counter} />
+      </MemoryRouter>,
+    );
+  };
+  it('hides cart count when counter is 0', () => {
+    renderNavbar(); // counter = 0 (default)
+    expect(screen.queryByTestId('nav-cart-count')).not.toBeInTheDocument();
+  });
+
+  it('shows cart count when counter is greater than 0', () => {
+    renderNavbar(5); // counter = 5
+    expect(screen.getByTestId('nav-cart-count')).toBeInTheDocument();
+  });
+
+  it('displays the correct counter number', () => {
+    renderNavbar(5); // counter = 5
+    expect(screen.getByTestId('nav-cart-count')).toHaveTextContent('5');
   });
 });

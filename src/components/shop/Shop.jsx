@@ -35,10 +35,12 @@ export default function Shop() {
               <div className={styles.itemBtnsWrapper}>
                 {cart[i] > 0 && (
                   <>
-                    <button onClick={() => handleRemoveCart(i)} className={styles.itemBtnPlus}>
+                    <button aria-label="decrement" onClick={() => handleRemoveCart(i)} className={styles.itemBtnPlus}>
                       -
                     </button>
-                    <div className={styles.itemCounter}>{cart[i]}</div>
+                    <div data-testid="product-counter" aria-label="number of this product in cart" className={styles.itemCounter}>
+                      {cart[i]}
+                    </div>
                   </>
                 )}
 

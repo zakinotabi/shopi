@@ -22,7 +22,11 @@ export default function Navbar({ counter }) {
         <li className={styles.cart}>
           <NavLink data-testid="cart" to="/cart" className={activeLink}>
             Cart
-            {counter > 0 && <div className={styles.cartNumber}>{counter}</div>}
+            {counter > 0 && (
+              <div data-testid="nav-cart-count" className={styles.cartNumber}>
+                {counter}
+              </div>
+            )}
           </NavLink>
         </li>
       </ul>
